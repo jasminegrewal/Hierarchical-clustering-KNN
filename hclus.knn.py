@@ -50,21 +50,21 @@ def hclus(filename, method):
     clusters = dict(zip(indexes, trainee_vectors))    
     cluster_index=[]
     for i in range(len_mat):
-        cluster_index.append([i])
+        cluster_index.append([i])    # initially,every point is added as one cluster
 
     ''' modifying the distance matrix D at each point depending on the method used. Here this while condition
     is used to stop the formation of clusters at a desired point, In this case, five clusters will be formed'''
     
     k=int(raw_input("Enter the number of clusters \n")) 
     while(DM.shape!=(k,k)):
-        tuple_max,tuple_2=mindist(DM) #distance at which clusters are merged
+    	tuple_max,tuple_2=mindist(DM) # distance at which clusters are merged and it will at two places in DM (in upper and lower triangle)
         val1=tuple_max[0]             # always smaller
         val2=tuple_max[1]
         d_max_value=DM[val1][val2]     #distance value at that point
         DM=np.array(DM)
         
         v=cluster_index[val2]
-        '''data index where cluster is formed are appended with eachother cluster_index'''
+        '''data index where cluster is formed are appended with eachother in cluster_index'''
         cluster_index.remove(v)  
 
         x=0
